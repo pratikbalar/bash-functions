@@ -11,3 +11,8 @@ function tarr() {
   cd $TMP_XCURRENT
   rm -rf /tmp/tmp_ext
 }
+
+
+## Alias section
+alias set_e="set -e"
+alias unset_e="set +e"
