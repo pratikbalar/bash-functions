@@ -1,18 +1,20 @@
 ## tarr https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz ghr_v0.13.0_linux_amd64/ghr /usr/bin/ghr
-
 function tarr() {
+  [[ -z $(which tar) ]] && echo "error tar not found"
   TMP_XCURRENT=$(pwd)
-  mkdir -p /tmp/tmp_ext
-  cd /tmp/tmp_ext
+  cd $(mktemp -d)
   wget -nv $1 -O tmp.tar.gz
   tar xvzf tmp.tar.gz
   cp $2 $3
   chmod a+x $3
   cd $TMP_XCURRENT
-  rm -rf /tmp/tmp_ext
 }
 
-
-## Alias section
-alias set_e="set -e"
-alias unset_e="set +e"
+# wgett www.this.com /usr/bin/semver
+function wgett(){
+  [[ -z $(which wget) ]] && echo "error wget not found"
+  TMP_XCURRENT=$(pwd)
+  wget -nv $1 -O $2
+  chmod a+x $2
+  cd $TMP_XCURRENT
+}
